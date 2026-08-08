@@ -23,8 +23,8 @@ try:
              "content": PROMPT,
              },
         ],
-        temperature=0.2,
-        max_tokens=300,
+        temperature=0.5,
+        max_tokens=500,
     )
 except errors.mistralerror as e:
     print(f"Mistral API error: {e}")
