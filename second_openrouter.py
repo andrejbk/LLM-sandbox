@@ -20,9 +20,15 @@ client = OpenAI(
 start_time = perf_counter()
 
 try:
-    response = client.responses.create(
+    response = client.chat.completions.create(
         model=MODEL,
-        input=PROMPT,
+        messages=[
+            {"role": "user",
+             "content": PROMPT,
+             },
+        ],
+        temperature=0.2,
+        max_tokens=300,
     )
 except OpenAIError as e:
     print(f"OpenRouter API error: {e}")
@@ -30,5 +36,5 @@ except OpenAIError as e:
 
 response_time = perf_counter() - start_time
 
-print(response.output_text)
+print(response.choices[0].message.content)
 print(f"Response time: {response_time:.2f} sec")
